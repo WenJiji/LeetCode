@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+		int size = nums.size() / 2 +1;
+		//if (size == 0)
+		//	return nums.at(0);
+		while (nums.size())
+		{
+			int tmp = nums[0];
+			for (vector<int>::iterator it = nums.begin(); it != nums.end(); )
+			{
+				if (*it == tmp)
+				{
+					it = nums.erase(it);
+				}
+				else
+					it++;
+				if (it == nums.end())
+					break;
+			}
+			if (nums.size() < size)
+				return tmp;
+		}
+    }
+};
