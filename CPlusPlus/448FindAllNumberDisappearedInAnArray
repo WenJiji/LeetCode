@@ -1,0 +1,45 @@
+class Solution {
+public:
+	vector<int> findDisappearedNumbers(vector<int>& nums) {
+		vector<int> res;
+		vector<int> fre(nums.size(),0);
+
+		for (vector<int>::iterator it = nums.begin(); it != nums.end(); it++)
+		{
+			fre.at(*it - 1) = 1;
+		}
+		for (int i = 0; i < fre.size(); i++)
+		{
+			if (fre[i] == 0)
+				res.push_back(i + 1);
+		}
+		return res;
+	}
+};
+
+
+// Solution with no extra space
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        int i = 0, n = nums.size();
+        vector<int> v;
+        
+        for (i = 0; i < n; i++) {
+            int val = abs(nums[i]);
+            val--;
+            
+            if (nums[val] > 0) {
+                nums[val] *= -1;
+            }
+        }
+        
+        for (i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                v.push_back(i+1);
+            }
+        }
+        
+        return v;
+    }
+};
