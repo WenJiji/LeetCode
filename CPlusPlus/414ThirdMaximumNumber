@@ -1,0 +1,52 @@
+class Solution {
+public:
+	int thirdMax(vector<int>& nums) {
+		vector<int> a;
+
+		for (vector<int>::iterator it = nums.begin(); it != nums.end(); it++)
+		{
+			if (a.empty())
+			{
+				a.push_back(*it);
+			}
+			else if ((a.size() == 1) && (*it != a[0]))
+			{
+				if (*it > a[0])
+					a.push_back(*it);
+				else
+					a.insert(a.begin(), *it);
+			}
+			else if (a.size() == 2 && (*it != a[0]) && (*it != a[1]))
+			{
+				if (*it > a[1])
+					a.push_back(*it);
+				else if (*it < a[1] && *it > a[0])
+					a.insert(a.begin() + 1, *it);
+				else
+					a.insert(a.begin(), *it);
+			}
+			else if(a.size() == 3)
+			{
+				if (*it > a[2])
+				{
+					for (int i = 0; i < a.size() - 1; i++)
+						a[i] = a[i + 1];
+					a[a.size() - 1] = *it;
+				}
+				else if (*it < a[2] && *it > a[1])
+				{
+					a[0] = a[1];
+					a[1] = *it;
+				}
+				else if (*it < a[1] && *it > a[0])
+					a[0] = *it;
+			}
+		}
+		if (a.size() == 3)
+			return a[0];
+		else if (a.size() == 2)
+			return a[1];
+		else
+			return a[0];
+	}
+};
