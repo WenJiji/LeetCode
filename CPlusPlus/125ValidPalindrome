@@ -1,0 +1,26 @@
+
+class Solution {
+public:
+	bool isPalindrome(string s) {
+		string tmp = "";
+		if (s == "")
+			return true;
+		for (int i = 0; i < s.length(); i++)
+		{
+			if ((s.at(i) >= 'a' && s.at(i) <= 'z') || (s.at(i) >= 'A' && s.at(i) <= 'Z') || (s.at(i) >= '0' && s.at(i) <= '9'))
+			{
+				tmp += s.at(i);
+			}
+		}
+		for (int i = 0; i < tmp.length()/2; i++)
+		{
+			char a = tolower(tmp.at(i));
+			char b = tolower(tmp.at(tmp.length() - 1 - i));
+			if (tolower(tmp.at(i)) != tolower(tmp.at(tmp.length() - 1 - i)))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+};
