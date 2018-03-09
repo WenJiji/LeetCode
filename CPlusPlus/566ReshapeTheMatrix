@@ -1,0 +1,24 @@
+class Solution {
+public:
+	vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
+		vector<vector<int>> res;
+		vector<int> tmpVec;
+		int sizeRow = nums.size();
+		int sizeCol = nums[0].size();
+		if (sizeRow * sizeCol != r*c)
+			return nums;
+		else
+		{ 
+			for (int i = 0; i < r; i++)
+			{
+				tmpVec.clear();
+				for (int j = 0; j < c; j++)
+				{	
+					tmpVec.push_back(nums[(i*c + j) / sizeCol][(i*c + j) % sizeCol]);
+				}
+				res.push_back(tmpVec);
+			}
+		}
+		return res;
+	}
+};
