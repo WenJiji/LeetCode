@@ -1,0 +1,29 @@
+class Solution {
+public:
+	bool checkRecord(string s) {
+		int count[2] = { 0 };
+		bool flag = false;
+		for (auto c : s) {
+			switch (c)
+			{
+			case 'A':
+			{
+				count[0]++;
+				if (count[0] > 1)
+					return false;
+				count[1] = 0;
+				break;
+			}
+			case 'L':
+				count[1]++;
+				if (count[1] > 2)
+					return false;
+				break;
+			default:
+				count[1] = 0;
+				break;
+			}
+		}
+		return true;
+	}
+};
