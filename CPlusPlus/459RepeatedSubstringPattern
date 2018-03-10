@@ -1,0 +1,33 @@
+class Solution {
+public:
+	bool repeatedSubstringPattern(string s) {
+		int size = s.length();
+		if (size <= 1)
+			return false;
+		bool flag = true;
+		for (int i = 1; i <= size / 2; i++)
+		{
+			if (size % i != 0)
+				continue;
+			int round = size / i;
+			if (flag == false)
+				flag = true;
+			for (int j = 0; j < round - 1 ; j++)
+			{
+				if (flag == false)
+					break;
+				for (int k = 0; k < i; k++)
+				{
+					if (s.at(j*i + k) != s.at((j + 1)*i + k))
+					{
+						flag = false;
+						break;
+					}
+				}
+			}
+			if (flag)
+				return flag;
+		}
+		return flag;
+	}
+};
