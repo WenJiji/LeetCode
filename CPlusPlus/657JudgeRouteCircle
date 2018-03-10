@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+		int val = 0;
+		for (auto c : moves)
+		{
+			switch (c){
+				case 'U':
+					val++;
+					break;
+				case 'D':
+					val--;
+					break;
+				case 'L':
+					val--;
+					break;
+				case 'R':
+					val++;
+					break;
+				default:
+					break;
+			}
+		}
+		if (val == 0)
+			return true;
+		return false;        
+    }
+};
