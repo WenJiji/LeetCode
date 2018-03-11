@@ -1,0 +1,16 @@
+class Solution {
+public:
+	string reverseString(string s) {
+		string ans = "";
+		if (s == "")
+			ans = "";
+		else
+		{
+			for (int i = s.length() - 1; i >= 0; i--)
+			{
+				ans += s.at(i);
+			}
+		}
+		return ans;
+	}
+};
