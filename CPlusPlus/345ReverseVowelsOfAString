@@ -1,0 +1,28 @@
+class Solution {
+public:
+	string reverseVowels(string s) {
+		char tmp = ' ';
+		string vowels = "aeiouAEIOU";
+		if (s.empty() || s.size() == 1)
+			return s;
+		char* front = &s[0];
+		char* end = &s[s.size() - 1];
+		while (front <= end)
+		{
+			if (vowels.find(*front) == string::npos)
+				front++;
+			else
+			{
+				if (vowels.find(*end) != string::npos)
+				{
+					tmp = *front;
+					*front = *end;
+					*end = tmp;
+					front++;
+				}
+				end--;
+			}
+		}
+		return s;
+	}
+};
