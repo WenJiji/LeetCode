@@ -1,0 +1,27 @@
+class Solution {
+public:
+	void moveZeroes(vector<int>& nums) {
+		vector<int>::iterator front = nums.begin();
+
+		int zeroCount = 0;
+		int nonZeroCount = 0;
+
+		for (vector<int>::iterator front = nums.begin(); front != nums.end(); )
+		{
+			if (*front == 0)
+			{
+				front = nums.erase(front);
+				zeroCount++;
+				//end = nums.end();
+			}
+			else
+			{
+				nonZeroCount++;
+				front++;
+			}
+			if (front == nums.end() - 1)
+				break;
+		}
+		nums.insert(nums.end(), zeroCount, 0);
+	}
+};
