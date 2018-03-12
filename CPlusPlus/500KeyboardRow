@@ -1,0 +1,34 @@
+		vector<string> keyboard;
+		vector<string> res;
+		keyboard.push_back("QWERTYUIOP");
+		keyboard.push_back("ASDFGHJKL");
+		keyboard.push_back("ZXCVBNM");
+		string a;
+		for (int i =0; i<words.size();i++)
+		{
+			int posValue = -1;
+			for (int j=0; j<words[i].length();j++)
+			{
+				for (int k=0; k<keyboard.size();k++)
+				{
+					if (keyboard[k].find(toupper(words[i].at(j))) != string::npos)
+					{
+						if (posValue == -1)
+						{
+							posValue = k;
+						}
+						else if(posValue != k)
+						{
+							posValue = -1;
+						}
+					}
+				}
+				if (posValue < 0)
+					break;
+			}
+			if (posValue >= 0)
+			{
+				res.push_back(words[i]);
+			}
+		}
+		return res;
