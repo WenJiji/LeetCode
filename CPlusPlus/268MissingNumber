@@ -1,0 +1,11 @@
+class Solution{
+public:
+	int missingNumber(vector<int>& nums) {
+		int size = nums.size();
+		int totalShould = (size-1)*size / 2;
+		int totalActual = 0;
+		for (vector<int>::iterator it = nums.begin(); it != nums.end(); it++)
+			totalActual += *it;
+		return totalShould - (totalActual - size);
+	}
+};
