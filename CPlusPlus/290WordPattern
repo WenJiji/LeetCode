@@ -1,0 +1,40 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+		string tmp = "";
+		vector<string> vec;
+		map<char, string> wordMap;
+		for (auto ch : str)
+		{
+			if (ch != ' ')
+				tmp += ch;
+			else
+			{
+				vec.push_back(tmp);
+				tmp.clear();
+			}
+		}
+		vec.push_back(tmp);
+		if (pattern.length() != vec.size())
+			return false;
+		for (int i = 0; i < pattern.length(); i++)
+		{
+			if (wordMap.find(pattern.at(i)) == wordMap.end())
+			{
+				for (int j = 0; j < i; j++)
+				{
+					if (vec.at(j) == vec.at(i))
+						return false;
+				}
+				wordMap[pattern.at(i)] = vec.at(i);
+			}		
+			else
+			{
+				string tmp = wordMap.find(pattern.at(i))->second;
+				if (wordMap.find(pattern.at(i))->second != vec.at(i))
+					return false;
+			}
+		}
+		return true;     
+    }
+};
