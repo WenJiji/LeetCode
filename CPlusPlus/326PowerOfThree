@@ -1,0 +1,8 @@
+class Solution {
+public:
+	bool isPowerOfThree(int n) {
+
+		double logAns = log10((double) n) / log10((double)3);
+		return (logAns - int(logAns) == 0) ? true : false;
+	}
+};
