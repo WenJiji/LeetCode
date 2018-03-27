@@ -1,0 +1,35 @@
+class Solution {
+public:
+	vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+		//	vector<int> v;
+		//	int len2 = nums2.size();
+		//	for (int i = 0; i < len2; i++)
+		//	{
+		//		for (int j = 0; j < nums1.size(); j++)
+		//		{
+		//			if (nums2[i] == nums1[j])
+		//			{
+		//				v.push_back(nums2[i]);
+		//				nums1.erase(nums1.begin() + j);
+		//				break;
+		//			}
+		//		}
+		//	}
+		//	return v;
+		//}
+		vector<int> res;
+		map<int, int> freq;
+		for (auto num : nums1) {
+			freq[num]++;
+		}
+		for (int num : nums2) {
+			if (freq.find(num) != freq.end()) {
+				res.push_back(num);
+				if (--freq[num] == 0) {
+					freq.erase(num);
+				}
+			}
+		}
+		return res;
+	}
+};
