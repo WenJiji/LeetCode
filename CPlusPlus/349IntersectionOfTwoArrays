@@ -1,0 +1,21 @@
+class Solution {
+public:
+	vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+		vector<int> ret;
+		unordered_map<int, int> m;
+		unordered_map<int, int> mm;
+
+		for (auto n : nums1)
+			m.insert(unordered_map<int, int>::value_type(n, n));
+		for (auto n : nums2) {
+			auto it = m.find(n);
+			if (it != m.end()) {
+				mm.insert(unordered_map<int, int>::value_type(n, n));
+			}
+		}
+		for (unordered_map<int, int>::iterator iter = mm.begin(); iter != mm.end(); iter++){
+			ret.push_back(iter->second);
+		}
+		return ret;
+	}
+};
