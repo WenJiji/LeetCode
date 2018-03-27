@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> tmp;
+		for (int i = left; i <= right; i++)
+		{
+			int j = i;
+
+			do
+			{
+				if (j % 10 == 0)
+					break;
+				else if (i % (j % 10))
+					break;
+				else
+					j = j / 10;
+			} while (j);
+			if (!j)
+				tmp.push_back(i);
+		}
+		return tmp;
+    }
+};
