@@ -1,0 +1,45 @@
+class Solution {
+public:
+	bool rotateString(string A, string B) {
+		int sizeA = A.size();
+		int sizeB = B.size();
+		if (sizeA != sizeB)
+			return false;
+		if (sizeA == 0)
+			return true;
+		vector<int> pos;
+		int i = 0;
+		while (true)
+		{
+			i = B.find(A.at(0), i);
+			if (i != -1)
+			{
+				pos.push_back(i);
+				i++;
+			}
+			else
+				break;
+		}
+		if (pos.size() == 0)
+			return false;
+		for (int i = 0; i < pos.size(); i++)
+		{
+			int shift = (sizeB - pos[i]) % sizeB;
+			int count = 0;
+			for (int j = 0; j < sizeA; j++)
+			{
+				int posB = j - shift >= 0 ? j - shift : A.size() + j - shift;
+				if (A.at(j) != B.at(posB))
+				{
+					
+					break;
+				}
+				else
+					count++;					
+			}
+			if (count == sizeA)
+				return true;
+		}
+		return false;
+	}
+};
