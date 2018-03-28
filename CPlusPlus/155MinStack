@@ -1,0 +1,45 @@
+class MinStack {
+public:
+    /** initialize your data structure here. */
+    vector<int> data;
+    
+    MinStack() {
+       data.clear(); 
+    }
+    
+    void push(int x) {
+        data.push_back(x);
+    }
+    
+    void pop() {
+        if (data.size() > 0)
+			return data.pop_back();
+		else
+			throw new exception;  
+    }
+    
+    int top() {
+ 		if (data.size()>0)
+			return data.at(data.size()-1);
+		else 
+			throw new exception;       
+    }
+    
+    int getMin() {
+		int min = INT_MAX;
+		for (auto i : data) {
+			if (i < min)
+				min = i;
+		}
+		return min;        
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
