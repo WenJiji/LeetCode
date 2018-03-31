@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+		int numArray[10000] = { 0 };
+		int size = nums.size();
+		int s = (1 + size)*size / 2;
+		int sum = 0;
+		vector<int> res;
+		for (int i = 0; i < nums.size(); i++)
+		{
+			numArray[nums.at(i)-1]++;
+			sum += nums.at(i);
+		}
+		for (int i = 0; i < nums.size(); i++)
+		{
+			if (numArray[i] == 0) {
+				res.push_back(sum + i + 1 - s);
+				res.push_back(i + 1);
+				break;
+			}
+			else if (numArray[i] == 2) {
+				res.push_back(i + 1);
+				res.push_back(s- (sum - i - 1));
+				break;
+			}
+		}
+		return res;        
+    }
+};
