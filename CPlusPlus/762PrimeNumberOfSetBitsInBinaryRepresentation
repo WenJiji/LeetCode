@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int countPrimeSetBits(int L, int R) {
+		vector<bitset<32>> vec;
+		int arr[] = { 2, 3, 5, 7, 11, 13, 17, 19 };
+		vector<int> prime = { arr, arr + sizeof(arr) / sizeof(arr[0]) };
+		int res = 0;
+		int size = R - L + 1;
+		for (int i = L; i <= R;i++)
+			vec.push_back(bitset<32>(i));
+		for (auto bits : vec)
+		{
+			if (find(prime.begin(), prime.end(), bits.count()) != prime.end())
+				res++;
+		}
+		return res;        
+    }
+};
