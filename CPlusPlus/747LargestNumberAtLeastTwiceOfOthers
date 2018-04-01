@@ -1,0 +1,20 @@
+class Solution {
+public:
+	int dominantIndex(vector<int>& nums) {
+		if (nums.size() < 2)
+			return false;
+		int max = 0;
+		int max2 = 0;
+		for (auto &i : nums) {
+			if (i >= max)
+				max2 = max, max = i;
+			else if (i < max && i >= max2)
+				max2 = i;
+		}
+		if (!max2)
+			return find(nums.begin(), nums.end(), max) - nums.begin();
+		if (max / max2 >= 2)
+			return find(nums.begin(), nums.end(), max) - nums.begin();
+		return -1;
+	}
+};
