@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isOneBitCharacter(vector<int>& bits) {
+		vector<int> v;
+		for (int i = 0; i < bits.size()-1; i++) {
+			if (v.empty())
+				v.push_back(bits[i]);
+			else if (bits[i] == 1 && v.back() == 1)
+				v.pop_back();
+			else if (bits[i] == 0 && v.back() == 1)
+				v.pop_back();
+            else
+				v.push_back(bits[i]);
+		}
+		if (v.empty() || v.back() == 0)
+			return true;
+		return false;        
+    }
+};
