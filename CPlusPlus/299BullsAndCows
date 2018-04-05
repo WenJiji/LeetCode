@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+		int A[10] = { 0 };
+		int bull = 0, cow = 0;
+        string res = "";
+		for (int i = 0; i<secret.length(); i++)
+		{
+			if (guess[i] == secret[i])
+				bull++;
+			else
+				A[secret[i] - '0']++;
+		}
+
+		for (int i = 0; i<guess.length(); i++)
+		{
+			if (guess[i] != secret[i])
+			{
+				if (A[guess[i] - '0'] > 0)
+				{
+					cow++;
+					A[guess[i] - '0']--;
+				}
+			}
+		}
+
+		res = to_string(bull) + "A" + to_string(cow) + "B";
+		return res;
+    }
+};
