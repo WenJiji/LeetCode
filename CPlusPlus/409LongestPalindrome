@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+		int a[52] = { 0 };
+		int count = 0;
+		bool flag = false;
+		for (auto ch : s) {
+			if (ch <= 'Z')
+				a[ch - 'A']++;
+			else
+				a[(ch - 'a') + 26]++;
+		}
+		for (int i = 0; i < 52; i++)
+		{
+			if (a[i] % 2 == 0 && a[i] != 0)
+				count += a[i];
+			else if (a[i] % 2 != 0 && a[i] != 0)
+				count += a[i]-1, flag = true;
+		}
+		return flag ? count+1:count;     
+    }
+};
