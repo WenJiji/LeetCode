@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+		vector<char> v;
+		int length = 0;
+		if (s.size() <2)
+			return s.size();
+		for (int i = 0; i < s.length(); i++) {
+			if (find(v.begin(), v.end(), s.at(i)) == v.end())
+				v.push_back(s.at(i));
+			else {
+				length = max(length, (int)v.size());
+				for (vector<char>::iterator it = v.begin(); it != find(v.begin(), v.end(), s.at(i));)
+					it = v.erase(it);
+				v.erase(v.begin());
+				v.push_back(s.at(i));
+			}
+		}
+		return length = max(length, (int)v.size());
+    }
+};
