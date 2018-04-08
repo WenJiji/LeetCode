@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+		vector<char> partStr;
+		string res = "";
+		if (s.empty())
+			return s;
+		for (auto ch : s)
+		{
+			if (ch != ' ')
+				partStr.push_back(ch);
+			else
+			{
+				for (int i = 0; i < partStr.size(); i++)
+					res += partStr.at(partStr.size() - 1 - i);
+				partStr.clear();
+				res += ' ';
+			}
+		}
+		if (!partStr.empty())
+		{
+			for (int i = 0; i < partStr.size(); i++)
+				res += partStr.at(partStr.size() - 1 - i);
+		}
+		return res;        
+    }
+};
