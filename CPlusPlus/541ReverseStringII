@@ -1,0 +1,34 @@
+class Solution {
+public:
+    string reverseStr(string s, int k) {
+		string res="";
+		vector<char> half;
+		int i = 0;
+		if (s.empty())
+			return s;
+		for (auto ch : s) 
+		{
+			
+			if ((i / k) % 2 == 0)
+				half.push_back(ch);
+			else 
+			{
+				if (i%k == 0) 
+				{
+					for (int j = 0; j < k; j++) 
+					{
+						res += half.at(k - 1 - j);
+					}
+					half.clear();
+				}
+				res += ch;
+			}
+			i++;
+		}
+		for (int j = 0; j < half.size(); j++) 
+		{
+			res += half.at(half.size() - 1 - j);
+		}
+		return res;        
+    }
+};
